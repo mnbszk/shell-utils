@@ -1,0 +1,9 @@
+#!/bin/bash
+	# -e 's/\(\b[0-9.]*\b\)/\o033[32m\1\o033[39m/g' \
+tail -f $1 | sed --unbuffered \
+	-e 's/\(\[.*\]\)\(\ .*DEBUG:\)/\1\o033[31m\2\o033[39m/' \
+	-e 's/\(\[.*\]\)\(\ .*INFO:\)/\1\o033[32m\2\o033[39m/' \
+	-e 's/\(\bselect\b\|\binsert\b\|\binto\b\|\bvalues\b\|\bupdate\b\|\bdelete\b\|\bfrom\b\|\bwhere\b\|\bset\b\|\bleft\b\|\bright\b\|\bjoin\b\|\band\b\|\bor\b\|\bnot\b\|\bon\b\|\bin\b\|\bas\b\|null\|\bis\b\|\bgroup\b\|\border\b\|\bby\b\|\basc\b\|\bdesc\b\|\blimit\b\|\boffset\b\|\bcase\b\|\bwhen\b\|\belse\b\|\belse\b\|\bthen\b\|\bend\b\)/\o033[1m\o033[34m\U\1\E\o033[39m\o033[0m/ig' \
+	-e 's/\(`[^`]\+`\)/\o033[33m\1\o033[39m/g' \
+	-e "s/\('[^']*'\)/\o033[38;5;214m\1\o033[39m/g" \
+	-e 's/\("[^"]*"\)/\o033[38;5;210m\1\o033[39m/g'
